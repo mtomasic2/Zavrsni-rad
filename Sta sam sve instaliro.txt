@@ -1,0 +1,4 @@
+Uz pomoću composera sam instaliro:
+Laminas za generiranje WSDL dokumenta
+Slim framework za kreiranje Restful apija
+GuzzleHTTP za slanje HTTP zahtjeva

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="author" content="Matija Tomašić">
+    <meta name="keywords" content="Header, nav, footer">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+
+    <link rel="icon" href="../materijali/ferrari-favicon.ico" type="image/ico">
+    <link rel="stylesheet" href="../css/mtomasic20_ispis.css" type="text/css" media="print">
+    <link rel="stylesheet" href="../css/mtomasic20_responzivni_dizajn.css" type="text/css">
+    <link rel="stylesheet" href="../css/mtomasic20.css" type="text/css">
+    <script src="../js/mtomasic20.js" defer></script>
+
+    <title>Prikaz podataka</title>
+</head>
+<body>
+    <header id="header">
+        <div class="header__content">
+            <h1 class="header__content__heading">Ferrari</h1>
+            <a href="../index.html" class="header__content__link"><img src="../materijali/ferrari.logo.png" alt="Logo stranice" class="header__content__logo"></a>
+        </div>
+        <div class="header__login">
+            <a href="../prijava.html" class="header__login__link" id="btnPrijava">Prijava</a>
+            <p class="header__login__korpodaci" id="textKorIme"></p>
+            <p class="header__login__korpodaci" id="textExpiryDate"></p>
+            <a href="../prijava.html" class="header__login__link" id="btnOdjava">Odjavi se</a>
+            <button id="btnEditPage">EDIT PAGE</button>
+        </div>
+       
+        
+        <noscript>
+            <dialog open>
+            Vaš Web preglednik ne podržava JavaScript!
+            </dialog>
+        </noscript>
+
+
+        <nav id="navigation">
+            <ul class="nav-main-menu">
+                <li class="nav-main-menu__item"><a href="../ostalo/kreativna.html" class="nav-main-menu__item__link" id="kreativna">Kreativna stranica</a></li>
+                <li class="nav-main-menu__item"><a href="../ostalo/multimedija.html" class="nav-main-menu__item__link" id="multimedia">Multimedija</a></li>
+                <li class="nav-main-menu__item"><a href="../ostalo/o_autoru.html" class="nav-main-menu__item__link" id="o-autoru">O autoru</a></li>
+                <li class="nav-main-menu__item"><a href="../obrazac.html" class="nav-main-menu__item__link" id="obrazac">Obrazac</a></li>
+                <li class="nav-main-menu__item"><a href="../podaci/popis.html" class="nav-main-menu__item__link" id="podaci">Podaci</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="container-for-overflow">
+            
+            <table class="results-table">
+                <caption class="results-table__caption">Rezultati ankete</caption>
+                <thead>
+                    <tr>
+                        <th class="column1">Ime</th>
+                        <th class="column2">Prezime</th>
+                        <th class="column3">Godine</th>
+                        <th class="column4">Obrazovanje</th>
+                        <th class="column5">Spol</th>
+                        <th class="column6">Najdraži Ferrari</th>
+                        <th class="column7">E-Mail adresa</th>
+                        <th class="column8">Broj telefona</th>
+                        <th class="column9">Motivacija</th>
+                        <th class="column10">Datum ispunjavanja</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="column1">Bruno</td>
+                        <td class="column2">Banana</td>
+                        <td class="column3">27</td>
+                        <td class="column4">Srednja škola</td>
+                        <td class="column5">M</td>
+                        <td class="column6">Ferrari 488</td>
+                        <td class="column7">bbanana99@gmail.com</td>
+                        <td class="column8">+385 99 638558278</td>
+                        <td class="column9">Novac</td>
+                        <td class="column10">14.02.2022. 08:12</td>
+                    </tr>
+                    <tr>
+                        <td class="column1">Ivan</td>
+                        <td class="column2">Horvatić</td>
+                        <td class="column3">20</td>
+                        <td class="column4">Srednja škola</td>
+                        <td class="column5">M</td>
+                        <td class="column6">Ferrari 812</td>
+                        <td class="column7">ihorvatic7@gmail.com</td>
+                        <td class="column8">+385 99 631258278</td>
+                        <td class="column9">Sreća</td>
+                        <td class="column10">12.02.2022. 06:22</td>
+                    </tr>
+                    <tr>
+                        <td class="column1">Marija</td>
+                        <td class="column2">Šip</td>
+                        <td class="column3">22</td>
+                        <td class="column4">Fakultet</td>
+                        <td class="column5">M</td>
+                        <td class="column6">Ferrari 430</td>
+                        <td class="column7">marij1asip@hotmail.com</td>
+                        <td class="column8">+385 99 63129347</td>
+                        <td class="column9">Obitelj</td>
+                        <td class="column10">17.02.2022. 06:56</td>
+                    </tr>
+                    <tr>
+                        <td class="column1">Leo</td>
+                        <td class="column2">Banić</td>
+                        <td class="column3">35</td>
+                        <td class="column4">Fakultet</td>
+                        <td class="column5">M</td>
+                        <td class="column6">Ferrari 458</td>
+                        <td class="column7">leobanic67@hotmail.com</td>
+                        <td class="column8">+385 99 63146397</td>
+                        <td class="column9">Novac</td>
+                        <td class="column10">07.03.2022. 06:23</td>
+                    </tr>
+                    <tr>
+                        <td class="column1">Iva</td>
+                        <td class="column2">Linić</td>
+                        <td class="column3">17</td>
+                        <td class="column4">Srednja škola</td>
+                        <td class="column5">Ž</td>
+                        <td class="column6">Ferrari 430</td>
+                        <td class="column7">ivalinic12@hotmail.com</td>
+                        <td class="column8">+385 99 22587397</td>
+                        <td class="column9">Karijera</td>
+                        <td class="column10">02.03.2022. 06:45</td>
+                    </tr>
+                    <tr>
+                        <td class="column1">Josipa</td>
+                        <td class="column2">Škafić</td>
+                        <td class="column3">23</td>
+                        <td class="column4">Fakultet</td>
+                        <td class="column5">Ž</td>
+                        <td class="column6">Ferrari 488</td>
+                        <td class="column7">josipaskafic92@gmail.com</td>
+                        <td class="column8">+385 99 22229897</td>
+                        <td class="column9">Novac, karijera, obitelj</td>
+                        <td class="column10">22.04.2022. 12:23</td>
+                    </tr>
+                    <tr>
+                        <td colspan="5"><u><b>Zadnje ažuriranje:</b></u></td>
+                        <td colspan="5"><i><b>28.03.2022 22:44</b></i></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+        </div>
+        <br>
+        <div class="iframe-container">
+            <iframe src="pregled.html"></iframe>
+        </div>
+        <img src="../materijali/BlackFerrariLogo.png" alt="Ferrari-crni logo" class="fixed-logo">
+    </main>
+    <footer>
+        <div class="footer__content">
+            <div class="footer__content__top">
+                <div>
+                    <img class="footer__content__cc" src="../materijali/cc.png" alt="creative-commons">
+                </div>
+                <div class="footer__content__author">
+                    <span>&copy; 2022 <a href="mailto:mtomasic20@foi.hr" class="footer__content__author__name">Matija Tomašić</a></span>
+                </div>
+                <div>
+                    <a href="http://validator.w3.org/check?uri=https://spider.foi.hr/OWT/2022/zadaca_03/mtomasic20/podaci/popis.html"><img src="../materijali/HTML5.png" alt="Ikona validatora" class="footer__content__HTML-validator"></a>
+                </div>
+            </div>
+            <div class="footer__content__bottom">
+                <div class="footer__content__toTop">
+                    <a href="#header"><img src="../materijali/ferrari.logo2.png" height="100" alt="" class="footer__content__toTop__logo"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

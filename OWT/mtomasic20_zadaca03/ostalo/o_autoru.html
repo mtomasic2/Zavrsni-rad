@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="author" content="Matija Tomašić">
+    <meta name="keywords" content="Header, nav, footer">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+
+    <link rel="icon" href="../materijali/ferrari-favicon.ico" type="image/ico">
+    <link rel="stylesheet" href="../css/mtomasic20_ispis.css" type="text/css" media="print">
+    <link rel="stylesheet" href="../css/mtomasic20_responzivni_dizajn.css" type="text/css">
+    <link rel="stylesheet" href="../css/mtomasic20.css" type="text/css">
+    <script src="../js/mtomasic20.js" defer></script>
+
+    <title>O autoru</title>
+</head>
+<body>
+    <header id="header">
+        <div class="header__content">
+            <h1 class="header__content__heading">Ferrari</h1>
+            <a href="../index.html" class="header__content__link"><img src="../materijali/ferrari.logo.png" alt="Logo stranice" class="header__content__logo"></a>
+        </div>
+        <div class="header__login">
+            <a href="../prijava.html" class="header__login__link" id="btnPrijava">Prijava</a>
+            <p class="header__login__korpodaci" id="textKorIme"></p>
+            <p class="header__login__korpodaci" id="textExpiryDate"></p>
+            <a href="../prijava.html" class="header__login__link" id="btnOdjava">Odjavi se</a>
+            <button id="btnEditPage">EDIT PAGE</button>
+        </div>
+       
+        
+        <noscript>
+            <dialog open>
+            Vaš Web preglednik ne podržava JavaScript!
+            </dialog>
+        </noscript>
+
+
+        <nav id="navigation">
+            <ul class="nav-main-menu">
+                <li class="nav-main-menu__item"><a href="../ostalo/kreativna.html" class="nav-main-menu__item__link" id="kreativna">Kreativna stranica</a></li>
+                <li class="nav-main-menu__item"><a href="../ostalo/multimedija.html" class="nav-main-menu__item__link" id="multimedia">Multimedija</a></li>
+                <li class="nav-main-menu__item"><a href="../ostalo/o_autoru.html" class="nav-main-menu__item__link" id="o-autoru">O autoru</a></li>
+                <li class="nav-main-menu__item"><a href="../obrazac.html" class="nav-main-menu__item__link" id="obrazac">Obrazac</a></li>
+                <li class="nav-main-menu__item"><a href="../podaci/popis.html" class="nav-main-menu__item__link" id="podaci">Podaci</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="about-me">
+            <div class="about-me__top">
+                <h3><u>Matija Tomašić</u></h3>
+                <p>Snalažljiv &vert; Marljiv &vert; Jednostavan</p>
+            </div>
+            <div class="about-me__bottom">
+                <div>
+                    <a href="../materijali/profilna.jpg" target="_blank"><img src="../materijali/profilna.jpg" alt="Profilna slika Matija Tomašić" class="about-me__bottom__user-image"></a>
+                    <blockquote>
+                        Razvoj web stranica ima brojne prednosti. Neke od njih su visoka zarada, prilika za rast i unapređenje i fleksibilnost. Neki od izazova za ljude koji se bave ovim poslom je konkurencija za tržištu rada. 
+                    </blockquote>
+                </div>
+                <div>
+                    <label for="html">HTML</label>
+                    <input type="range" id="html" name="posto" max="10" step="1" value="9"><br>
+                    <label for="css">CSS</label>
+                    <input type="range" id="css" name="posto" max="10" step="1" value="8"><br>
+                    <label for="js">JS</label>
+                    <input type="range" id="js" name="posto" max="10" step="1" value="6"><br>
+                    <label for="nodejs">NodeJS</label>
+                    <input type="range" id="nodejs" name="posto" max="10" step="1" value="4"><br>
+                </div>
+            </div>
+        </div>
+        <img src="../materijali/BlackFerrariLogo.png" alt="Ferrari-crni logo" class="fixed-logo">
+    </main>
+    <footer>
+        <div class="footer__content">
+            <div class="footer__content__top">
+                <div>
+                    <img class="footer__content__cc" src="../materijali/cc.png" alt="creative-commons">
+                </div>
+                <div class="footer__content__author">
+                    <span>&copy; 2022 <a href="mailto:mtomasic20@foi.hr" class="footer__content__author__name">Matija Tomašić</a></span>
+                </div>
+                <div>
+                    <a href="http://validator.w3.org/check?uri=https://spider.foi.hr/OWT/2022/zadaca_03/mtomasic20/ostalo/o_autoru.html"><img src="../materijali/HTML5.png" alt="Ikona validatora" class="footer__content__HTML-validator"></a>
+                </div>
+            </div>
+            <div class="footer__content__bottom">
+                <div class="footer__content__toTop">
+                    <a href="#header"><img src="../materijali/ferrari.logo2.png" height="100" alt="" class="footer__content__toTop__logo"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

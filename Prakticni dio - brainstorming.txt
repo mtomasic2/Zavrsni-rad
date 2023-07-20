@@ -1,0 +1,5 @@
+Softver koja će uneseni tekst (tekstualni opis nekog RESTful API-ja) pretvoriti u strojno-čitljiv format dokumenta
+
+Softver koji prima tekstualni opis nekog API-ja i preko integriranog ChatGPT modela će izgenerirati putanje koje će on prepoznati u ulaznom tekstu, a output tog modela će biti u JSON obliku. Alat ChatGPT će služiti za obradu prirodnog teksta. Potom će taj JSON file biti proslijeđen dijelu softvera koji će uz pomoć swagger-ui-express biblioteke kreirati Swagger odnosno OpenAPI specifikaciju koja se odnosi na tekstualni opis prvobitno unesenog teksta. Unutar OpenAI specifikacije, biti će moguće testirati ispravnost generiranih resursa. Sofver bi bio izrađen pomoću NodeJS-a i pripadajućih biblioteki. 
+
+

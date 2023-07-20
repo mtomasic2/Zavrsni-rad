@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="author" content="Matija Tomašić">
+    <meta name="keywords" content="Header, nav, footer">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+
+    <link rel="icon" href="materijali/ferrari-favicon.ico" type="image/ico">
+    <link rel="stylesheet" href="css/mtomasic20_ispis.css" type="text/css" media="print">
+    <link rel="stylesheet" href="css/mtomasic20_responzivni_dizajn.css" type="text/css">
+    <link rel="stylesheet" href="css/mtomasic20.css" type="text/css">
+    <script src="js/mtomasic20.js" defer></script>
+
+    <title>Obrazac</title>
+</head>
+<body>
+    <header id="header">
+        <div class="header__content">
+            <h1 class="header__content__heading">Ferrari</h1>
+            <a href="index.html" class="header__content__link"><img src="materijali/ferrari.logo.png" alt="Logo stranice" class="header__content__logo"></a>
+        </div>
+        <div class="header__login">
+            <a href="prijava.html" class="header__login__link" id="btnPrijava">Prijava</a>
+            <p class="header__login__korpodaci" id="textKorIme"></p>
+            <p class="header__login__korpodaci" id="textExpiryDate"></p>
+            <a href="prijava.html" class="header__login__link" id="btnOdjava">Odjavi se</a>
+            <button id="btnEditPage">EDIT PAGE</button>
+        </div>
+       
+        
+        <noscript>
+            <dialog open>
+            Vaš Web preglednik ne podržava JavaScript!
+            </dialog>
+        </noscript>
+
+
+        <nav id="navigation">
+            <ul class="nav-main-menu">
+                <li class="nav-main-menu__item"><a href="ostalo/kreativna.html" class="nav-main-menu__item__link" id="kreativna">Kreativna stranica</a></li>
+                <li class="nav-main-menu__item"><a href="ostalo/multimedija.html" class="nav-main-menu__item__link" id="multimedia">Multimedija</a></li>
+                <li class="nav-main-menu__item"><a href="ostalo/o_autoru.html" class="nav-main-menu__item__link" id="o-autoru">O autoru</a></li>
+                <li class="nav-main-menu__item"><a href="obrazac.html" class="nav-main-menu__item__link" id="obrazac">Obrazac</a></li>
+                <li class="nav-main-menu__item"><a href="podaci/popis.html" class="nav-main-menu__item__link" id="podaci">Podaci</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <form action="https://spider.foi.hr/OWT/materijali/ispis_forme.php" method="post" novalidate class="form">
+            <div class="form__top">
+                <fieldset name="Osobni-podaci" id="fieldset-osobni-podaci">
+                    <legend>Osobni podaci:</legend>
+                    <label for="text_ime" id="label-text_ime">Ime:</label><br>
+                    <input type="text" name="ime" id="text_ime"><br>
+                    <label for="text_prezime" id="label-text_prezime">Prezime:</label><br>
+                    <input type="text" name="prezime" id="text_prezime"><br>
+                    <label for="godine" id="label-godine">Godine:</label><br>
+                    <input type="number" id="godine" name="godine" min="1" max="100" value="1"><br>
+                    <label id="label-obrazovanje">Obrazovanje:</label><br>
+                    <input type="radio" name="obrazovanje" value="bezSkole" id="radio_bezSkole"><label for="radio_bezSkole">Bez škole</label><br>
+                    <input type="radio" name="obrazovanje" value="OSkola" id="radio_OSkola"><label for="radio_OSkola">Osnovna škola</label><br>
+                    <input type="radio" name="obrazovanje" value="SSkola" id="radio_SSkola"><label for="radio_SSkola">Srednja škola</label><br>
+                    <input type="radio" name="obrazovanje" value="Faks" id="radio_Faks"><label for="radio_Faks">Fakultet</label><br>
+                </fieldset>
+                <fieldset name="Spol" id="fieldset-spol">
+                    <legend>Spol</legend>
+                    <label id="label-spol">Spol:</label><br>
+                    <input type="radio" id="radio_musko" name="spol" value="musko">
+                    <label for="radio_musko">M</label>
+                    <input type="radio" id="radio_zen" name="spol" value="zensko">
+                    <label for="radio_zen">Ž</label>
+                    <input type="radio" id="radio_ostalo" name="spol" value="Non-binary">
+                    <label for="radio_ostalo">NB</label><br>
+                </fieldset>
+                <fieldset name="Osobne-preferencije" id="fieldset-osobne-preferencije">
+                    <legend>Osobne preferencije:</legend>
+                    <label for="dropdown_n-m-a" id="label-najdrazi-ferari">Najdrazi Ferrari:</label><br>
+                    <select name="najdraza_marka_automobila" id="dropdown_n-m-a" size="2" multiple>
+                        <option value="Ferrari 488">Ferrari 488</option>
+                        <option value="Ferrari 812">Ferrati 812</option>
+                        <option value="Ferrari Portofino">Ferrari Portofino</option>
+                        <option value="Ferrari 458">Ferrari 458</option>
+                        <option value="Ferrari 430">Ferrari 430</option>
+                    </select><br>
+                    <label for="color_odaberi">Najdraza boja:</label><br>
+                    <input type="color" id="color_odaberi"><br>
+                </fieldset>
+            </div>
+            <div class="form__bottom">
+                <fieldset name="Kontakt" id="fieldset-contact">
+                    <legend>Podaci za kontakt</legend>
+                    <label for="email_address" id="label-email">E-Mail adresa:</label><br>
+                    <input type="email" id="email_address" ><br>
+                    <label for="tel_broj" id="label-broj-tel">Broj telefona:</label><br>
+                    <input type="text" name="broj_tel" id="tel_broj"><br>
+                </fieldset>
+                <fieldset name="Ostalo" id="fieldset-ostalo">
+                    <legend>Ostalo:</legend>
+                    <label for="datetime-local_datumIVrijeme" id="label-date-time">Datum ispunjavanja:</label><br>
+                    <input type="text" name="datumvrijeme" id="datetime-local_datumIVrijeme"><br>
+                    <label for="textarea_motivacija" id="label-motivacija">Motivacija:</label><br>
+                    <textarea name="motivacija" id="textarea_motivacija" cols="40" rows="10" placeholder="Ovdje unesite vašu motivaciju...."></textarea><br>
+                    <label for="urlURL" id="labelurlURL">Url:</label>
+                    <input type="url" id="urlURL">
+                </fieldset>
+            </div>
+            <div class="form__buttons">
+                <input type="reset" value="Resetiraj" name="reset" id="reset">
+                <input type="submit" value="Posalji" name="submit" id="posalji">
+            </div>
+        </form>
+        <img src="materijali/BlackFerrariLogo.png" alt="Ferrari-crni logo" class="fixed-logo">
+    </main>
+    <footer>
+        <div class="footer__content">
+            <div class="footer__content__top">
+                <div>
+                    <img class="footer__content__cc" src="materijali/cc.png" alt="creative-commons">
+                </div>
+                <div class="footer__content__author">
+                    <span>&copy; 2022 <a href="mailto:mtomasic20@foi.hr" class="footer__content__author__name">Matija Tomašić</a></span>
+                </div>
+                <div>
+                    <a href="http://validator.w3.org/check?uri=https://spider.foi.hr/OWT/2022/zadaca_03/mtomasic20/obrazac.html"><img src="materijali/HTML5.png" alt="Ikona validatora" class="footer__content__HTML-validator"></a>
+                </div>
+            </div>
+            <div class="footer__content__bottom">
+                <div class="footer__content__toTop">
+                    <a href="#header"><img src="materijali/ferrari.logo2.png" height="100" alt="" class="footer__content__toTop__logo"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

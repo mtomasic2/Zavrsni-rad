@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="author" content="Matija Tomašić">
+    <meta name="keywords" content="Header, nav, footer">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    
+    <link rel="icon" href="materijali/ferrari-favicon.ico" type="image/ico">
+    <link rel="stylesheet" href="css/mtomasic20_ispis.css" type="text/css" media="print">
+    <link rel="stylesheet" href="css/mtomasic20_responzivni_dizajn.css" type="text/css">
+    <link rel="stylesheet" href="css/mtomasic20.css" type="text/css">
+    <script src="js/mtomasic20.js" defer></script>
+    
+    <title>Ferrari</title>
+</head>
+<body>
+    <header id="header">
+        <div class="header__content">
+            <h1 class="header__content__heading">Ferrari</h1>
+            <a href="index.html" class="header__content__link"><img src="materijali/ferrari.logo.png" alt="Logo stranice" class="header__content__logo"></a>
+        </div>
+        <div class="header__login">
+            <a href="prijava.html" class="header__login__link" id="btnPrijava">Prijava</a>
+            <p class="header__login__korpodaci" id="textKorIme"></p>
+            <p class="header__login__korpodaci" id="textExpiryDate"></p>
+            <a href="prijava.html" class="header__login__link" id="btnOdjava">Odjavi se</a>
+            <button id="btnEditPage">EDIT PAGE</button>
+        </div>
+       
+        
+        <noscript>
+            <dialog open>
+            Vaš Web preglednik ne podržava JavaScript!
+            </dialog>
+        </noscript>
+
+
+        <nav id="navigation">
+            <ul class="nav-main-menu" id="navlista">
+                <li class="nav-main-menu__item"><a href="ostalo/kreativna.html" class="nav-main-menu__item__link" id="kreativna">Kreativna stranica</a></li>
+                <li class="nav-main-menu__item"><a href="ostalo/multimedija.html" class="nav-main-menu__item__link" id="multimedia">Multimedija</a></li>
+                <li class="nav-main-menu__item"><a href="ostalo/o_autoru.html" class="nav-main-menu__item__link" id="o-autoru">O autoru</a></li>
+                <li class="nav-main-menu__item"><a href="obrazac.html" class="nav-main-menu__item__link" id="obrazac">Obrazac</a></li>
+                <li class="nav-main-menu__item"><a href="podaci/popis.html" class="nav-main-menu__item__link" id="podaci">Podaci</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="main__content">
+            <div>  
+                <ul> 
+                    <h2>Popis Animacija na stranici</h2>
+                    <li>
+                        <a class="linkToAnimation" href="ostalo/multimedija.html#mmultimediaFirstFigure">Povećavanje i smanjivanje sadržaja</a> - potrebno je prijeći mišem preko prve slike unutar multimedijske stranice za slike kako bih se ona povećala
+                    </li>
+                    <li>
+                        <a class="linkToAnimation" href="ostalo/multimedija.html#multimediaSecondFigure">Rotiranje sadržaja</a> - potrebno je mišem prijeći preko druge slike unutar multimedijske stranice za slike kako bih se ona rotirala
+                    </li>
+                    <li>
+                        <a class="linkToAnimation" href="ostalo/multimedija.html#multimediaThirdFigure">Animacija po želji</a> - potrebno je mišem prijeći preko treće slike unutar multimedijske stranice za slike kako bih se animacija "pulsiranja" pokrenula
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="graph">
+            <form action="" id="graph__form">
+                <h2 class="graph__heading">Kreiraj graf</h2>
+                <p class="graph__instructions">Unesi prozvoljnu vrijednost od 1 do 10:</p>
+                <label for="textGraphValue1">Dodaj vrijednost 1:</label>
+                <input type="text" id="textGraphValue1"><br>
+                <label for="textGraphValue2">Dodaj vrijednost 2:</label>
+                <input type="text" id="textGraphValue2"><br>
+                <label for="textGraphValue3">Dodaj vrijednost 3:</label>
+                <input type="text" id="textGraphValue3"><br>
+                <label for="textGraphValue4">Dodaj vrijednost 4:</label>
+                <input type="text" id="textGraphValue4"><br>
+            </form>
+            <button id="btnPrikaziGraf">Prikazi graf</button>
+
+            <div id="prostorZaCrtanje">
+                <canvas></canvas>
+            </div>
+        </div>
+        <img src="materijali/BlackFerrariLogo.png" alt="Ferrari-crni logo" class="fixed-logo">
+    </main>
+    <footer>
+        <div class="footer__content">
+            <div class="footer__content__top">
+                <div>
+                    <img class="footer__content__cc" src="materijali/cc.png" alt="creative-commons">
+                </div>
+                <div class="footer__content__author">
+                    <span>&copy; 2022 <a href="mailto:mtomasic20@foi.hr" class="footer__content__author__name">Matija Tomašić</a></span>
+                </div>
+                <div>
+                    <a href="http://validator.w3.org/check?uri=https://spider.foi.hr/OWT/2022/zadaca_03/mtomasic20"><img src="materijali/HTML5.png" alt="Ikona validatora" class="footer__content__HTML-validator"></a>
+                </div>
+            </div>
+            <div class="footer__content__center">
+                <div class="footer__content__center__CSS-validator">
+                    <a href="https://jigsaw.w3.org/css-validator/validator?uri=https://spider.foi.hr/OWT/2022/zadaca_03/mtomasic20/css/mtomasic20.css"><img src="materijali/CSS3.png" alt="Ikona CSS validatora" class="footer__content__center__CSS-validator__logo"></a>
+                    <p class="footer__content__center__CSS-validator__file">Stilska datoteka</p>
+                </div>
+                <div class="footer__content__center__CSS-validator">
+                    <a href="https://jigsaw.w3.org/css-validator/validator?uri=https://spider.foi.hr/OWT/2022/zadaca_03/mtomasic20/css/mtomasic20_responzivni_dizajn.css"><img src="materijali/CSS3.png" alt="Ikona CSS validatora" class="footer__content__center__CSS-validator__logo"></a>
+                    <p class="footer__content__center__CSS-validator__file">Responzivni dizajn</p>
+                </div>
+                <div class="footer__content__center__CSS-validator">
+                    <a href="https://jigsaw.w3.org/css-validator/validator?uri=https://spider.foi.hr/OWT/2022/zadaca_03/mtomasic20/css/mtomasic20_ispis.css"><img src="materijali/CSS3.png" alt="Ikona CSS validatora" class="footer__content__center__CSS-validator__logo"></a>
+                    <p class="footer__content__center__CSS-validator__file">Datoteka za ispis</p>
+                </div>
+            </div>
+            <div class="footer__content__bottom">
+                <div class="footer__content__toTop">
+                    <a href="#header"><img src="materijali/ferrari.logo2.png" height="100" alt="" class="footer__content__toTop__logo"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+
+</html>

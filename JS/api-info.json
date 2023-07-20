@@ -1,0 +1,93 @@
+{
+    "apiName": "Vremenska prognoza API",
+    "version": "1.0",
+    "author": "OpenWeather",
+    "description": "API za pristup trenutnoj vremenskoj prognozi i prognozi za naredne dane.",
+    "routes": [
+      {
+        "path": "/trenutna_prognoza",
+        "method": "GET",
+        "description": "Dohvaća trenutnu vremensku prognozu za određeni grad.",
+        "parameters": [
+          {
+            "name": "grad",
+            "in": "query",
+            "description": "Naziv grada za koji se želi dobiti prognoza.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Uspješno dohvaćanje trenutne vremenske prognoze.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "grad": "Zagreb",
+                  "temperatura": "26°C",
+                  "vrijeme": "suncano"
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "path": "/prognoza_naredni_dani",
+        "method": "GET",
+        "description": "Dohvaća vremensku prognozu za naredne dane za određeni grad.",
+        "parameters": [
+          {
+            "name": "grad",
+            "in": "query",
+            "description": "Naziv grada za koji se želi dobiti prognoza.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "broj_dana",
+            "in": "query",
+            "description": "Broj dana za koje se želi dobiti prognoza (podrazumijeva se 7 ako nije specificirano).",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Uspješno dohvaćanje vremenske prognoze za naredne dane.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "grad": "Zagreb",
+                  "prognoza": [
+                    {
+                      "datum": "2023-07-16",
+                      "temperatura": "28°C",
+                      "vrijeme": "pretezno suncano"
+                    },
+                    {
+                      "datum": "2023-07-17",
+                      "temperatura": "25°C",
+                      "vrijeme": "umjereno oblacno"
+                    },
+                    {
+                      "datum": "2023-07-18",
+                      "temperatura": "27°C",
+                      "vrijeme": "suncano"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "usageGuide": "Da biste koristili ovaj API za dohvaćanje vremenske prognoze, izvršite HTTP zahtjev na odgovarajući endpoint s odgovarajućim parametrima. Na primjer, za dohvat trenutne prognoze za grad Zagreb, izvršite GET zahtjev na /trenutna_prognoza?grad=Zagreb. Odgovor će biti u JSON formatu i sadržavati relevantne informacije o vremenskoj prognozi. Koristite endpoint /prognoza_naredni_dani za dohvaćanje prognoze za naredne dane, uz opcionalni parametar broj_dana koji određuje koliko dana unaprijed želite prognozu. Molimo vas da budete svjesni ograničenja API-ja i provjerite moguća ograničenja korištenja ili troškove ako su primjenjivi."
+  }
