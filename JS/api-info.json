@@ -1,93 +1,73 @@
 {
-    "apiName": "Vremenska prognoza API",
-    "version": "1.0",
-    "author": "OpenWeather",
-    "description": "API za pristup trenutnoj vremenskoj prognozi i prognozi za naredne dane.",
-    "routes": [
-      {
-        "path": "/trenutna_prognoza",
-        "method": "GET",
-        "description": "Dohvaća trenutnu vremensku prognozu za određeni grad.",
-        "parameters": [
-          {
-            "name": "grad",
-            "in": "query",
-            "description": "Naziv grada za koji se želi dobiti prognoza.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Uspješno dohvaćanje trenutne vremenske prognoze.",
-            "content": {
-              "application/json": {
-                "example": {
-                  "grad": "Zagreb",
-                  "temperatura": "26°C",
-                  "vrijeme": "suncano"
-                }
-              }
-            }
-          }
-        }
-      },
-      {
-        "path": "/prognoza_naredni_dani",
-        "method": "GET",
-        "description": "Dohvaća vremensku prognozu za naredne dane za određeni grad.",
-        "parameters": [
-          {
-            "name": "grad",
-            "in": "query",
-            "description": "Naziv grada za koji se želi dobiti prognoza.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "broj_dana",
-            "in": "query",
-            "description": "Broj dana za koje se želi dobiti prognoza (podrazumijeva se 7 ako nije specificirano).",
-            "required": false,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Uspješno dohvaćanje vremenske prognoze za naredne dane.",
-            "content": {
-              "application/json": {
-                "example": {
-                  "grad": "Zagreb",
-                  "prognoza": [
-                    {
-                      "datum": "2023-07-16",
-                      "temperatura": "28°C",
-                      "vrijeme": "pretezno suncano"
-                    },
-                    {
-                      "datum": "2023-07-17",
-                      "temperatura": "25°C",
-                      "vrijeme": "umjereno oblacno"
-                    },
-                    {
-                      "datum": "2023-07-18",
-                      "temperatura": "27°C",
-                      "vrijeme": "suncano"
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        }
+  "apiName": "Hearthstone API",
+  "version": "1.0",
+  "description": "API koji pruža ažurirane Hearthstone podatke izravno iz igre.",
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/info",
+      "description": "Vraća popis trenutnog patcha, klasa, setova, tipova, frakcija, kvaliteta, rasa i lokacija.",
+      "response": {
+        "success": true,
+        "message": "Uspješno dohvaćeni podaci."
       }
-    ],
-    "usageGuide": "Da biste koristili ovaj API za dohvaćanje vremenske prognoze, izvršite HTTP zahtjev na odgovarajući endpoint s odgovarajućim parametrima. Na primjer, za dohvat trenutne prognoze za grad Zagreb, izvršite GET zahtjev na /trenutna_prognoza?grad=Zagreb. Odgovor će biti u JSON formatu i sadržavati relevantne informacije o vremenskoj prognozi. Koristite endpoint /prognoza_naredni_dani za dohvaćanje prognoze za naredne dane, uz opcionalni parametar broj_dana koji određuje koliko dana unaprijed želite prognozu. Molimo vas da budete svjesni ograničenja API-ja i provjerite moguća ograničenja korištenja ili troškove ako su primjenjivi."
-  }
+    },
+    {
+      "method": "GET",
+      "path": "/cards",
+      "description": "Vraća sve dostupne Hearthstone karte, uključujući one koje se ne mogu prikupiti.",
+      "response": {
+        "success": true,
+        "message": "Uspješno dohvaćene karte.",
+        "data": [
+          {
+            "cardId": "EX1_116",
+            "name": "Leeroy Jenkins",
+            "cardSet": "Hall of Fame",
+            "type": "Minion",
+            "faction": "Alliance",
+            "rarity": "Legendary",
+            "cost": 5,
+            "attack": 6,
+            "health": 2,
+            "text": "Charge. Battlecry: Summon two 1/1 Whelps for your opponent.",
+            "flavor": "At least he has Angry Chicken.",
+            "artist": "Gabe from Penny Arcade",
+            "collectible": true,
+            "elite": true,
+            "playerClass": "Neutral",
+            "img": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/7740c50c88d17b12c3eccbf1c57af9163929add6c63bba7fbad663f574bc6307.png",
+            "imgGold": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/cf21572abd2583e7520733ac221c35fd5aeb5d700de9b43895712a74c2c68eb4.png",
+            "locale": "enUS",
+            "mechanics": [
+              {
+                "name": "Charge"
+              },
+              {
+                "name": "Battlecry"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/cards/{name}",
+      "description": "Vraća kartu prema imenu ili ID-u. Može vratiti više karata ako dijele isto ime.",
+      "response": {
+        "success": true,
+        "message": "Uspješno dohvaćena karta."
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/cards/search/{name}",
+      "description": "Vraća karte prema djelomičnom imenu.",
+      "response": {
+        "success": true,
+        "message": "Uspješno dohvaćene karte."
+      }
+    }
+  ]
+}
