@@ -1,0 +1,338 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "PokéAPI",
+      "description": "Consumption-only API for Pokémon data",
+      "version": "2.0"
+    },
+    "servers": [
+      {
+        "url": "https://pokeapi.co/api/v2"
+      }
+    ],
+    "paths": {
+      "/{endpoint}/": {
+        "get": {
+          "summary": "Get a paginated list of available resources",
+          "parameters": [
+            {
+              "name": "endpoint",
+              "in": "path",
+              "required": true,
+              "description": "The resource type to retrieve",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "description": "The number of resources to return per page (default: 20)",
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "offset",
+              "in": "query",
+              "description": "The offset for pagination",
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/NamedAPIResourceList"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/berry/{id or name}/": {
+        "get": {
+          "summary": "Get information about a specific Berry",
+          "parameters": [
+            {
+              "name": "id or name",
+              "in": "path",
+              "required": true,
+              "description": "The identifier or name of the Berry",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Berry"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/berry-firmness/{id or name}/": {
+        "get": {
+          "summary": "Get information about a specific Berry Firmness",
+          "parameters": [
+            {
+              "name": "id or name",
+              "in": "path",
+              "required": true,
+              "description": "The identifier or name of the Berry Firmness",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/BerryFirmness"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/berry-flavor/{id or name}/": {
+        "get": {
+          "summary": "Get information about a specific Berry Flavor",
+          "parameters": [
+            {
+              "name": "id or name",
+              "in": "path",
+              "required": true,
+              "description": "The identifier or name of the Berry Flavor",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/BerryFlavor"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "NamedAPIResourceList": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "integer",
+              "description": "The total number of resources available from this API"
+            },
+            "next": {
+              "type": "string",
+              "description": "The URL for the next page in the list"
+            },
+            "previous": {
+              "type": "string",
+              "description": "The URL for the previous page in the list"
+            },
+            "results": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/NamedAPIResource"
+              },
+              "description": "A list of named API resources"
+            }
+          }
+        },
+        "NamedAPIResource": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "The name of this resource"
+            },
+            "url": {
+              "type": "string",
+              "description": "The URL for this resource"
+            }
+          }
+        },
+        "Berry": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "description": "The identifier for this resource"
+            },
+            "name": {
+              "type": "string",
+              "description": "The name for this resource"
+            },
+            "growth_time": {
+              "type": "integer",
+              "description": "Time it takes the tree to grow one stage, in hours"
+            },
+            "max_harvest": {
+              "type": "integer",
+              "description": "The maximum number of these berries that can grow on one tree in Generation IV"
+            },
+            "natural_gift_power": {
+              "type": "integer",
+              "description": "The power of the move 'Natural Gift' when used with this Berry"
+            },
+            "size": {
+              "type": "integer",
+              "description": "The size of this Berry, in millimeters"
+            },
+            "smoothness": {
+              "type": "integer",
+              "description": "The smoothness of this Berry, used in making Pokéblocks or Poffins"
+            },
+            "soil_dryness": {
+              "type": "integer",
+              "description": "The speed at which this Berry dries out the soil as it grows"
+            },
+            "firmness": {
+              "$ref": "#/components/schemas/NamedAPIResource",
+              "description": "The firmness of this berry, used in making Pokéblocks or Poffins"
+            },
+            "flavors": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/BerryFlavorMap"
+              },
+              "description": "A list of references to each flavor a berry can have and the potency of each of those flavors in regard to this berry"
+            },
+            "item": {
+              "$ref": "#/components/schemas/NamedAPIResource",
+              "description": "This is a reference to the item specific data for this berry"
+            },
+            "natural_gift_type": {
+              "$ref": "#/components/schemas/NamedAPIResource",
+              "description": "The type inherited by 'Natural Gift' when used with this Berry"
+            }
+          }
+        },
+        "BerryFlavor": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "description": "The identifier for this resource"
+            },
+            "name": {
+              "type": "string",
+              "description": "The name for this resource"
+            },
+            "berries": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/FlavorBerryMap"
+              },
+              "description": "A list of the berries with this flavor"
+            },
+            "contest_type": {
+              "$ref": "#/components/schemas/NamedAPIResource",
+              "description": "The contest type that correlates with this berry flavor"
+            },
+            "names": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Name"
+              },
+              "description": "The name of this resource listed in different languages"
+            }
+          }
+        },
+        "BerryFirmness": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "description": "The identifier for this resource"
+            },
+            "name": {
+              "type": "string",
+              "description": "The name for this resource"
+            },
+            "berries": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/NamedAPIResource"
+              },
+              "description": "A list of the berries with this firmness"
+            },
+            "names": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Name"
+              },
+              "description": "The name of this resource listed in different languages"
+            }
+          }
+        },
+        "BerryFlavorMap": {
+          "type": "object",
+          "properties": {
+            "potency": {
+              "type": "integer",
+              "description": "How powerful the referenced flavor is for this berry"
+            },
+            "flavor": {
+              "$ref": "#/components/schemas/NamedAPIResource",
+              "description": "The referenced berry flavor"
+            }
+          }
+        },
+        "Name": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "The name of this resource"
+            },
+            "language": {
+              "$ref": "#/components/schemas/NamedAPIResource",
+              "description": "The language of this resource name"
+            }
+          }
+        },
+        "FlavorBerryMap": {
+          "type": "object",
+          "properties": {
+            "potency": {
+              "type": "integer",
+              "description": "How powerful the referenced flavor is for this berry"
+            },
+            "berry": {
+              "$ref": "#/components/schemas/NamedAPIResource",
+              "description": "The berry with the referenced flavor"
+            }
+          }
+        }
+      }
+    }
+  }
+  

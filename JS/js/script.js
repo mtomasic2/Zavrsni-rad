@@ -19,7 +19,7 @@ async function getText(file) {
   
     const doc = parseHTML(y);
 
-    const elementsToDelete = ["script", "nav", "sidenav", "topnav", "pagetop", "style", "header", "changelog", "navigation", "sidebar", "footer"];
+    const elementsToDelete = ["script", "nav", "sidenav", "topnav", "pagetop", "style", "header", "changelog", "navigation", "sidebar", "footer", "toolbar"];
 
     deleteElementsByPartialName(doc, elementsToDelete);
 

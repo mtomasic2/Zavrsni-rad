@@ -1,3 +1,5 @@
+const { Configuration, OpenAIApi } = require("openai");
+
 const express = require('express');
 const ds = require('fs');
 const swaggerUi = require('swagger-ui-express');
@@ -8,8 +10,13 @@ const port = 8000;
 const putanja = __dirname;
 const cors = require('cors');
 
+const configuration = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+const openai = new OpenAIApi(configuration);
+
 // Putanja do JSON datoteke s informacijama o API-ju
-const apiInfoFilePath = path.join(__dirname, 'api-info.json');
+const apiInfoFilePath = path.join(__dirname, 'api-info2.json');
 
 // Funkcija za čitanje JSON datoteke
 async function readApiInfoFromFile() {
@@ -31,11 +38,8 @@ async function generateSwaggerDocument(apiInfo) {
       version: '1.0.0'
     },
     paths: generatePaths(apiInfo.endpoints),
-    servers: [
-      {
-        url: `http://localhost:${port}`,
-      },
-    ],
+    servers: apiInfo.servers.map(url => ({ url }))
+    
     // Dodajte ostale dijelove Swagger dokumentacije prema potrebi
   };
 }
@@ -78,6 +82,14 @@ app.get("/",(zahtjev, odgovor) => {
   odgovor.send();
 });
 
+app.get("/api", async (zahtjev, odgovor) => {
+  const completion = await openai.createChatCompletion({
+    model: "gpt-3.5-turbo",
+    messages: [{role: "system", content: "You are a helpful assistant."}, {role: "user", content: "Hello world"}],
+  });
+  console.log(completion.data.choices[0].message);
+});
+
 app.use('/api-docs', swaggerUi.serve);
 // Ruta za prikaz Swagger UI, koristimo asinkronu funkciju
 app.get('/api-docs', async (zahtjev, odgovor) => {
@@ -86,7 +98,10 @@ app.get('/api-docs', async (zahtjev, odgovor) => {
     const apiInfo = await readApiInfoFromFile();
 
     // Generirajte Swagger dokumentaciju iz pročitanog JSON objekta
-    const swaggerDocument = await generateSwaggerDocument(apiInfo);
+    // const swaggerDocument = await generateSwaggerDocument(apiInfo);
+
+    const swaggerDocument = apiInfo;
+    // console.log(apiInfo);
 
     // Prikaz Swagger UI pomoću pročitanog Swagger dokumenta
     swaggerUi.setup(swaggerDocument)(zahtjev, odgovor);
