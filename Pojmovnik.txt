@@ -1,2 +1,0 @@
-Strojno-čitljivi
-Formati koje strojevi mogu prepoznati su oni čije podatke računalni programi mogu s lakoćom izvući. PDF dokumenti nisu čitljivi strojevima. Računala mogu uredno prikazati tekst, no ne mogu razumjeti kontekst koji ga okružuje.

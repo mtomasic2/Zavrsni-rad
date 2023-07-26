@@ -1,3 +1,0 @@
-Većina web servisa danas su RESTful servisi koji uglavnom nemaju strojno čitljivi opis, već je opis funkcionalnosti često neformalno opisan na web stranici. Ova tema pokušava riješiti ovaj problem automatskim generiranjem opisa tih servisa. Teoretski dio rada obuhvaća osnove servisno-orijentirane arhitekture, web servisa, RESTfull servisa i jezika za opis funkcionalnosti web servisa. Praktični dio rada treba imati aplikaciju koja koristi neku od metoda obrade prirodnog jezika za automatsko generiranje opisa RESTfull web servisa na nekoliko primjera dostupnih API-ja.
-
-U svakom slučaju cijeli dizajn praktičnog dijela ostaje na Vama.

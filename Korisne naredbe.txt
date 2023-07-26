@@ -1,8 +1,0 @@
-Pokretanje PHP ugrađenog servera:
-php -S localhost:8000 -t zavrsni(ime cijele mape)
-
-Pokretanje PHP ugrađenog servera gdje se postavlja datoteka kao router:
-php -S localhost:8000 -t zavrsni(ime cijele mape) ime_router_datoteke.php
-
-Instaliranje pluginova sa composerom:
-composer require ime_plugina/ime_plugina
