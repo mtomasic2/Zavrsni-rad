@@ -2,6 +2,7 @@ const { Configuration, OpenAIApi } = require("openai");
 
 const express = require('express');
 const ds = require('fs');
+const bodyParser = require('body-parser');
 const swaggerUi = require('swagger-ui-express');
 const fs = require('fs');
 const path = require('path');
@@ -9,6 +10,8 @@ const app = express();
 const port = 8000;
 const putanja = __dirname;
 const cors = require('cors');
+
+const webParser = require("./webParser.js");
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
@@ -72,6 +75,8 @@ function generatePaths(routes) {
 console.log(path.join(putanja, "index.html"));
 
 app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/js",express.static(putanja+"/js"));
 
@@ -82,12 +87,36 @@ app.get("/",(zahtjev, odgovor) => {
   odgovor.send();
 });
 
-app.get("/api", async (zahtjev, odgovor) => {
-  const completion = await openai.createChatCompletion({
-    model: "gpt-3.5-turbo",
-    messages: [{role: "system", content: "You are a helpful assistant."}, {role: "user", content: "Hello world"}],
-  });
-  console.log(completion.data.choices[0].message);
+app.get("/",(zahtjev, odgovor) => {
+  odgovor.redirect("/");
+});
+
+app.post("/api", async (zahtjev, odgovor) => {
+  try {
+    // const completion = await openai.createChatCompletion({
+    //   model: "gpt-3.5-turbo",
+    //   messages: [{role: "system", content: "Say hi to the GPT-3 chatbot!"}],
+    // });
+
+    // // Dohvatite odgovor od API-ja
+    // const odgovorApi = completion.data.choices[0].message;
+
+    // // // Parsirajte odgovor u JSON objekt
+    // // const jsonData = JSON.parse(odgovorApi);
+
+    // // Vratite JSON objekt kao odgovor
+    // odgovor.json(odgovorApi);
+
+    const webLink = zahtjev.body.webLink;
+    odgovor.send(webLink);
+
+    const webparser = new webParser();
+    console.log(await webparser.getText(webLink));
+    
+  } catch (error) {
+    console.error('Greška prilikom slanja zahtjeva:', error);
+    odgovor.status(500).json({ error: 'Greška prilikom slanja zahtjeva' });
+  }
 });
 
 app.use('/api-docs', swaggerUi.serve);
