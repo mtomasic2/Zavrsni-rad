@@ -25,17 +25,23 @@ class ApiInfoHandler {
     }
       
     extractJsonFromString(inputString) {
-        const startIdx = inputString.indexOf('{');
-        const endIdx = inputString.lastIndexOf('}');
+        const startIdx = inputString.includes('```json') ? inputString.indexOf('```json') + 7 : inputString.indexOf('{');
+        const endIdx = inputString.includes('```json') ? inputString.lastIndexOf('```') : inputString.lastIndexOf('}');
     
         if (startIdx === -1 || endIdx === -1 || endIdx < startIdx) {
             throw new Error('Invalid JSON string');
         }
     
-        const jsonString = inputString.slice(startIdx, endIdx + 1);
+        let jsonString = inputString.slice(startIdx, endIdx + 1);
+        jsonString = jsonString.trim(); // Uklonite razmake sa početka i kraja JSON stringa
+        const sanitizedJsonString = jsonString.includes('`') ? jsonString.slice(0, -1) : jsonString; 
+
+        console.log("-----------------------------");
+        console.log(sanitizedJsonString);
+        console.log("-----------------------------");
     
         try {
-            const jsonObject = JSON.parse(jsonString);
+            const jsonObject = JSON.parse(sanitizedJsonString);
             return jsonObject;
         } catch (error) {
             throw new Error('Failed to parse JSON object');

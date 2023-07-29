@@ -1,5 +1,5 @@
 const {encode, decode} = require('gpt-3-encoder')
-const { Configuration, OpenAIApi } = require("openai");
+const { Configuration, OpenAIApi } = require('openai');
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
@@ -14,8 +14,8 @@ class ChatUtils {
     static async getChatCompletionResponse(chatPrompt) {
         try {
             const completion = await openai.createChatCompletion({
-                model: "gpt-3.5-turbo",
-                messages: [{ role: "system", content: chatPrompt }],
+                model: 'gpt-3.5-turbo',
+                messages: [{ role: 'system', content: chatPrompt }],
             });
       
             // Dohvatite odgovor od API-ja
