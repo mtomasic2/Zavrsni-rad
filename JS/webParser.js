@@ -1,8 +1,7 @@
 const axios = require('axios');
-const cheerio = require('cheerio');
 const { JSDOM } = require('jsdom');
 
-class webParser {
+class WebParser {
     // Funkcija koja dohvaća tekstualni sadržaj preko Fetch API-a
     async fetchText(file) {
         let x = await axios.get(file);
@@ -61,4 +60,4 @@ class webParser {
     }
 }
 
-module.exports = webParser;
+module.exports = WebParser;
