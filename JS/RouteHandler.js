@@ -13,9 +13,11 @@ const filePath = path.join(__dirname, 'api-info3.json');
 const putanja = __dirname;
 
 exports.getHome = function (zahtjev, odgovor) {
-    var pocetna = ds.readFileSync(path.join(putanja, 'index.html'));
+    var home = ds.readFileSync(path.join(putanja, 'html/components/index.html'));
+    var header = ds.readFileSync(path.join(putanja, 'html/partials/header.html'));
+    var footer = ds.readFileSync(path.join(putanja, 'html/partials/footer.html'));
     odgovor.type('html');
-    odgovor.write(pocetna);
+    odgovor.write(header + home + footer);
     odgovor.send();
 }
 
@@ -23,13 +25,9 @@ exports.postApi = async function (zahtjev, odgovor) {
     try {
         const webLink = zahtjev.body.webLink;
         const parsedText = await webparser.getText(webLink);
-        //console.log(countTokens(parsedText));
-  
+
         const chatPrompt = 'Give me example of OpenAPI specification in JSON file';
         await handler.writeApiInfoToFile(chatPrompt, filePath);
-  
-        // const apiInfo = await readApiInfoFromFile(filePath);
-        // console.log(apiInfo);
   
         odgovor.redirect("/api-docs");
         return;

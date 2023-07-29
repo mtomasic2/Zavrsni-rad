@@ -20,7 +20,6 @@ class ChatUtils {
       
             // Dohvatite odgovor od API-ja
             const odgovorApi = completion.data.choices[0].message.content;
-      
             return odgovorApi;
         } catch (error) {
             console.error('Greška prilikom slanja zahtjeva:', error);

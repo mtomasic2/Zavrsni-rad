@@ -18,8 +18,6 @@ class ApiInfoHandler {
         fs.writeFile(filePath, content, (err) => {
             if (err) {
                 console.error('Greška prilikom pisanja u datoteku:', err);
-            } else {
-                console.log('String je uspješno zapisan u datoteku.');
             }
         });
     }
@@ -36,10 +34,6 @@ class ApiInfoHandler {
         jsonString = jsonString.trim(); // Uklonite razmake sa početka i kraja JSON stringa
         const sanitizedJsonString = jsonString.includes('`') ? jsonString.slice(0, -1) : jsonString; 
 
-        console.log("-----------------------------");
-        console.log(sanitizedJsonString);
-        console.log("-----------------------------");
-    
         try {
             const jsonObject = JSON.parse(sanitizedJsonString);
             return jsonObject;
@@ -50,9 +44,7 @@ class ApiInfoHandler {
   
     async writeApiInfoToFile(chatPrompt, filePath) {
         const chatResponse = await ChatUtils.getChatCompletionResponse(chatPrompt);
-        console.log(chatResponse);
         const extractedJson = this.extractJsonFromString(chatResponse);
-        console.log(extractedJson);
         this.writeToFile(filePath, JSON.stringify(extractedJson));
     }
 }
