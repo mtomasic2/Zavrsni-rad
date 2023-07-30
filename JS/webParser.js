@@ -38,15 +38,6 @@ class WebParser {
         return dom.window.document;
     }
 
-    findElementsByPartialName(doc, name) {
-        const htmlElements = doc.querySelectorAll(`${name}`);
-        const classElements = doc.querySelectorAll(`[class*="${name}"]`);
-        const idElements = doc.querySelectorAll(`[id*="${name}"]`);
-        const elements = new Set([...htmlElements, ...classElements, ...idElements]);
-        
-        return Array.from(elements);
-    }
-
     deleteElementsByPartialName(doc, names) {
         names.forEach(name => {
             const htmlElements = doc.querySelectorAll(`${name}`);

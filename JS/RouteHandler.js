@@ -7,8 +7,7 @@ const ApiInfoHandler = require('./ApiInfoHandler');
 const webparser = new webParser();
 const handler = new ApiInfoHandler();
 
-const apiInfoFilePath = path.join(__dirname, 'api-info2.json');
-const filePath = path.join(__dirname, 'api-info3.json');
+const filePath = path.join(__dirname, 'api_definitions/api-info.json');
 
 const putanja = __dirname;
 
