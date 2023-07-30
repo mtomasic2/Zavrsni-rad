@@ -3,32 +3,33 @@ const { JSDOM } = require('jsdom');
 
 class WebParser {
     // Funkcija koja dohvaća tekstualni sadržaj preko Fetch API-a
-    async fetchText(file) {
-        let x = await axios.get(file);
-        return await x.data;
+    async fetchText(response) {
+        if(response.status == 200)
+            return await response.data;
+        return null
+    }
+
+    async fetchResponse(file){
+        return await axios.get(file);
+    }
+
+    async checkIfResponseIsOk(response){
+        if(response.status == 200){
+            return true;
+        }else{
+            return false;
+        }
     }
     
     // Funkcija koja dohvaća sadržaj sa stranice, uklanja skripte, stilove i navigacijske elemente te vraća čisti tekstualni sadržaj tijela dokumenta.
-    async getText(file) {
-        let y = await this.fetchText(file);
-
+    async getText(response) {
+        let y = await this.fetchText(response);
         const doc = this.parseHTML(y);
 
         const elementsToDelete = ["script", "nav", "sidenav", "topnav", "pagetop", "style", "header", "changelog", "navigation", "sidebar", "footer", "toolbar"];
-
         this.deleteElementsByPartialName(doc, elementsToDelete);
 
-        // console.log(doc.body);
         return doc.body.textContent;
-
-        // const textContent = doc.body.innerHTML;
-        // console.log(textContent);
-        // demo.innerHTML = textContent;
-        // data.innerHTML = doc.body.textContent;
-    
-        // // Primjer korištenja funkcije za pronalaženje elemenata s dijelom imena "navigation"
-        // const navigationElements = findElementsByPartialName(doc, "navigation");
-        // console.log(navigationElements);
     }
   
     // Funkcija koja pretvara HTML string u DOM elemente pomoću DOMParser-a

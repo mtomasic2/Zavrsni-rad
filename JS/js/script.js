@@ -3,12 +3,10 @@ const demo = document.getElementById("demo");
 const data = document.getElementById("data");
 
 submitLink.addEventListener("click", (event) => {
-    //event.preventDefault();
+    var webLink = document.getElementById("webLink");
+    const file = webLink.value;
 
-    // var webLink = document.getElementById("webLink");
-    // const file = webLink.value;
-
-    // if(file != ""){
-    //     getText(file);
-    // }
+    if(file == ""){
+        event.preventDefault();
+    }
 });

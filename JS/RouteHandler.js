@@ -24,13 +24,19 @@ exports.getHome = function (zahtjev, odgovor) {
 exports.postApi = async function (zahtjev, odgovor) {
     try {
         const webLink = zahtjev.body.webLink;
-        const parsedText = await webparser.getText(webLink);
+        const response = await webparser.fetchResponse(webLink);
 
-        const chatPrompt = 'Give me example of OpenAPI specification in JSON file';
-        await handler.writeApiInfoToFile(chatPrompt, filePath);
-  
-        odgovor.redirect("/api-docs");
-        return;
+        if(webparser.checkIfResponseIsOk(response)){
+            const parsedText = await webparser.getText(response);
+    
+            const chatPrompt = 'Give me example of OpenAPI specification in JSON file';
+            await handler.writeApiInfoToFile(chatPrompt, filePath);
+      
+            odgovor.redirect("/api-docs");
+            return;
+        }else{
+            odgovor.redirect("/");
+        }
   
       } catch (error) {
         console.error('Greška prilikom slanja zahtjeva:', error);
