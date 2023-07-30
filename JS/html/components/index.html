@@ -1,14 +1,20 @@
 
-<form action="./api" method="POST">
-    <div>
-        <label for="webLink">Poveznica na stranicu:</label>
-        <input type="text" name="webLink" id="webLink">
+<div class="container mt-4">
+    <form action="./api" method="POST">
+        <div class="mb-1">
+            <label for="webLink" class="form-label">API Documentation link</label>
+            <div class="input-group">
+              <span class="input-group-text" id="webLink-example">https://api.example.com/v2/</span>
+              <input type="text" class="form-control" required name="webLink" id="webLink" aria-describedby="webLink-example webLink-example-help">
+            </div>
+            <div class="form-text" id="webLink-example-help">Example of link input</div>
+        </div>
+        <div>
+            <input class="btn btn-secondary" type="submit" value="Generate" id="submitLink">
+        </div>
+    </form>
+    <div id="demo">
     </div>
-    <div>
-        <input type="submit" value="Posalji" id="submitLink">
+    <div id="data">
     </div>
-</form>
-<div id="demo">
-</div>
-<div id="data">
 </div>
