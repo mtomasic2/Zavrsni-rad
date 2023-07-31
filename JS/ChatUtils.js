@@ -23,7 +23,7 @@ class ChatUtils {
             return odgovorApi;
         } catch (error) {
             console.error('Greška prilikom slanja zahtjeva:', error);
-            throw error;
+            return false;
         }
     }
 }

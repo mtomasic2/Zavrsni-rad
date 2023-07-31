@@ -44,8 +44,14 @@ class ApiInfoHandler {
   
     async writeApiInfoToFile(chatPrompt, filePath) {
         const chatResponse = await ChatUtils.getChatCompletionResponse(chatPrompt);
-        const extractedJson = this.extractJsonFromString(chatResponse);
-        this.writeToFile(filePath, JSON.stringify(extractedJson));
+        const chatResponseOK = chatResponse == false ? '' : chatResponse;
+        const extractedJson = chatResponseOK == '' ? '' : this.extractJsonFromString(chatResponse);
+        
+        if(extractedJson != ''){
+            this.writeToFile(filePath, JSON.stringify(extractedJson));
+            return true
+        }else
+            return false;
     }
 }
 

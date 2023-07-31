@@ -3,6 +3,7 @@ const ds = require('fs');
 const swaggerUi = require('swagger-ui-express');
 const webParser = require('./WebParser.js');
 const ApiInfoHandler = require('./ApiInfoHandler');
+const { time } = require('console');
 
 const webparser = new webParser();
 const handler = new ApiInfoHandler();
@@ -20,26 +21,32 @@ exports.getHome = function (zahtjev, odgovor) {
     odgovor.send();
 }
 
+exports.getPage404 = function (zahtjev, odgovor) {
+    var page404 = ds.readFileSync(path.join(putanja, 'html/components/page404.html'));
+    var header = ds.readFileSync(path.join(putanja, 'html/partials/header.html'));
+    var footer = ds.readFileSync(path.join(putanja, 'html/partials/footer.html'));
+    odgovor.type('html');
+    odgovor.write(header + page404 + footer);
+    odgovor.send();
+}
+
 exports.postApi = async function (zahtjev, odgovor) {
     try {
         const webLink = zahtjev.body.webLink;
         const response = await webparser.fetchResponse(webLink);
 
-        if(webparser.checkIfResponseIsOk(response)){
-            const parsedText = await webparser.getText(response);
-    
-            const chatPrompt = 'Give me example of OpenAPI specification in JSON file';
-            await handler.writeApiInfoToFile(chatPrompt, filePath);
-      
-            odgovor.redirect("/api-docs");
-            return;
-        }else{
-            odgovor.redirect("/");
+        if (webparser.checkIfResponseIsOk(response)) {
+          const parsedText = await webparser.getText(response);
+          const chatPrompt = 'Give me example of OpenAPI specification in JSON file';
+          const isFileWritten = await handler.writeApiInfoToFile(chatPrompt, filePath);
+          odgovor.redirect(isFileWritten ? "/api-docs" : "/page404");
+        } else {
+          odgovor.redirect("/page404");
         }
   
       } catch (error) {
-        console.error('Greška prilikom slanja zahtjeva:', error);
-        odgovor.status(500).json({ error: 'Greška prilikom slanja zahtjeva' });
+        // console.error('Greška prilikom slanja zahtjeva:', error);
+        odgovor.redirect("/page404");
         return;
       }
 }
