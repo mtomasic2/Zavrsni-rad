@@ -25,7 +25,7 @@ function prepareResources(){
 
 function preparePaths(){
   app.get('/', RouteHandler.getHome);
-  app.get('/page404', RouteHandler.getPage404);
+  app.get('/errorPage', RouteHandler.getErrorPage);
   app.post('/api', RouteHandler.postApi);
   app.use('/api-docs', swaggerUi.serve);
   app.get('/api-docs', RouteHandler.getApiDocs);

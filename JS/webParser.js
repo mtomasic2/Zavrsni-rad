@@ -14,11 +14,7 @@ class WebParser {
     }
 
     async checkIfResponseIsOk(response){
-        if(response.status == 200){
-            return true;
-        }else{
-            return false;
-        }
+        return response.status == 200;
     }
     
     // Funkcija koja dohvaća sadržaj sa stranice, uklanja skripte, stilove i navigacijske elemente te vraća čisti tekstualni sadržaj tijela dokumenta.
@@ -26,7 +22,8 @@ class WebParser {
         let y = await this.fetchText(response);
         const doc = this.parseHTML(y);
 
-        const elementsToDelete = ["script", "nav", "sidenav", "topnav", "pagetop", "style", "header", "changelog", "navigation", "sidebar", "footer", "toolbar"];
+        const elementsToDelete = ["script", "nav", "sidenav", "topnav", "pagetop", "style", "header", "changelog", "navigation", "sidebar", "footer", "toolbar", "aside", "banner", "donations"];
+        // kasnije dodano: aside, banner, donations
         this.deleteElementsByPartialName(doc, elementsToDelete);
 
         return doc.body.textContent;
