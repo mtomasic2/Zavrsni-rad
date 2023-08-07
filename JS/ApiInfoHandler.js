@@ -2,7 +2,6 @@ const fs = require('fs');
 const ChatUtils = require('./ChatUtils.js');
 
 class ApiInfoHandler {
-    // Funkcija za čitanje JSON datoteke
     async readApiInfoFromFile(filePath) {
         try {
             const rawData = await fs.promises.readFile(filePath);
@@ -13,7 +12,6 @@ class ApiInfoHandler {
         }
     }
       
-    // Funkcija za pisanje stringa u datoteku
     writeToFile(filePath, content) {
         fs.writeFile(filePath, content, (err) => {
             if (err) {
@@ -31,7 +29,7 @@ class ApiInfoHandler {
         }
     
         let jsonString = inputString.slice(startIdx, endIdx + 1);
-        jsonString = jsonString.trim(); // Uklonite razmake sa početka i kraja JSON stringa
+        jsonString = jsonString.trim();
         const sanitizedJsonString = jsonString.includes('`') ? jsonString.slice(0, -1) : jsonString; 
 
         try {

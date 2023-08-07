@@ -13,15 +13,17 @@ class PageRenderer {
     getErrorObject(errorCode){
         switch(errorCode){
             case '404':
-              return {status: 404, message: "Page not found", description: "The page you're looking for doesn't exist"};
-            case '500':
-              return {status: 500, message: "Internal Server Error", description: "An internal server error occurred."};
+                return {status: 404, message: "Page not found", description: "The page you're looking for doesn't exist"};
             case '408':
-              return {status: 408, message: "Request Timeout", description: "The request took too long to process."};
+                return {status: 408, message: "Request Timeout", description: "The request took too long to process."};
+            case '409':
+                return {status: 409, message: "Conflict", description: "The request could not be completed due to a conflict with the current state of the target resource."};
+            case '500':
+                return {status: 500, message: "Internal Server Error", description: "An internal server error occurred."};
             case '503':
-              return {status: 503, message: "Service Unavailable", description: "The service is temporarily unavailable."};
+                return {status: 503, message: "Service Unavailable", description: "The service is temporarily unavailable."};
             default:
-              return null;
+                return null;
         }
     }
 }

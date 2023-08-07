@@ -2,7 +2,6 @@ const axios = require('axios');
 const { JSDOM } = require('jsdom');
 
 class WebParser {
-    // Funkcija koja dohvaća tekstualni sadržaj preko Fetch API-a
     async fetchText(response) {
         if(response.status == 200)
             return await response.data;
@@ -17,7 +16,6 @@ class WebParser {
         return response.status == 200;
     }
     
-    // Funkcija koja dohvaća sadržaj sa stranice, uklanja skripte, stilove i navigacijske elemente te vraća čisti tekstualni sadržaj tijela dokumenta.
     async getText(response) {
         let y = await this.fetchText(response);
         const doc = this.parseHTML(y);
@@ -29,7 +27,6 @@ class WebParser {
         return doc.body.textContent;
     }
   
-    // Funkcija koja pretvara HTML string u DOM elemente pomoću DOMParser-a
     parseHTML(htmlString) {
         const dom = new JSDOM(htmlString);
         return dom.window.document;

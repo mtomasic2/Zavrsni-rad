@@ -1,4 +1,4 @@
-const {encode, decode} = require('gpt-3-encoder')
+const { encode } = require('gpt-3-encoder')
 const { Configuration, OpenAIApi } = require('openai');
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,

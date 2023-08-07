@@ -6,7 +6,6 @@ const swaggerUi = require('swagger-ui-express');
 const webParser = require('./WebParser.js');
 const ApiInfoHandler = require('./ApiInfoHandler');
 const pageRenderer = require('./PageRenderer');
-const { time } = require('console');
 
 const webparser = new webParser();
 const handler = new ApiInfoHandler();
@@ -44,42 +43,46 @@ exports.postApi = async function (zahtjev, odgovor) {
     try {
         const webLink = zahtjev.body.webLink;
         const response = await webparser.fetchResponse(webLink);
-
         const responseCode = await webparser.returnResponseCode(response);
         const parsedText = responseCode == 200 ? await webparser.getText(response) : '';
 
-        if (webparser.checkIfResponseIsOk(response)) {
-          console.log("---------------------------------------");
+        if(parsedText.length > 30 && webparser.checkIfResponseIsOk(response)){
+          console.log("----------------------------------------------------------------------------");
           console.log(await webparser.returnResponseCode(response));
-          console.log("---------------------------------------");
-          const parsedText = await webparser.getText(response);
           const cleanedText = normalizeSpace(parsedText);
-          console.log(cleanedText + '\n---------------------------------------');
-          // const chatPrompt = 'Napisi mi openapi specifikaciju u json obliku (bez komentara) sa ovim putanja koje se navode u sljedecem opisu: \n' + cleanedText;
-          // const isFileWritten = await handler.writeApiInfoToFile(chatPrompt, filePath);
-          odgovor.redirect(isFileWritten ? "/api-docs" : "/errorPage?error=404");
-        } else {
-          odgovor.redirect("/page404");
+          console.log("----------------------------------------------------------------------------");
+          console.log(cleanedText + '\n----------------------------------------------------------------------------');
+          const chatPrompt = 'Napisi mi OpenAPI specifikaciju u JSON obliku (bez komentara) sa putanja koje se navode u sljedecem opisu: \n' + cleanedText;
+          const isFileWritten = await handler.writeApiInfoToFile(chatPrompt, filePath);
+          odgovor.redirect(isFileWritten ? "/api-docs" : `/errorPage?error=${responseCode}`);
+        }else{
+          odgovor.redirect(`/errorPage?error=409`);
         }
-  
       } catch (error) {
-        // console.error('Greška prilikom slanja zahtjeva:', error);
-        odgovor.redirect("/page404");
+        const responseCode = error.code == 'ENOTFOUND' || error.code == 'ECONNREFUSED' ? 404 : 500;
+        odgovor.redirect(`/errorPage?error=${responseCode}`);
         return;
       }
 }
 
 exports.getApiDocs = async function (zahtjev, odgovor) {
+    var header = ds.readFileSync(path.join(putanja, 'html/partials/header.html'));
+    var footer = ds.readFileSync(path.join(putanja, 'html/partials/footer.html'));
+
     try {
-        // Pročitajte JSON objekt iz datoteke api-info.json
         const apiInfo = await handler.readApiInfoFromFile(filePath);
         const swaggerDocument = apiInfo;
-        // console.log(apiInfo);
     
-        // Prikaz Swagger UI pomoću pročitanog Swagger dokumenta
-        swaggerUi.setup(swaggerDocument)(zahtjev, odgovor);
+        const options = {
+          customCss: '.swagger-ui .topbar { display: none }',
+          customSiteTitle: 'API documentation'
+        }
+        const swaggerUiHtml = swaggerUi.generateHTML(swaggerDocument, options);
+        
+        odgovor.send(header + swaggerUiHtml + footer);
+
       } catch (error) {
         console.error('Greška prilikom generiranja Swagger dokumentacije:', error);
-        odgovor.status(500).send('Greška prilikom generiranja Swagger dokumentacije.');
+        odgovor.redirect(`/errorPage?error=500`);
       }
 }
