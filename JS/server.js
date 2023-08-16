@@ -29,4 +29,5 @@ function preparePaths(){
   app.post('/api', RouteHandler.postApi);
   app.use('/api-docs', swaggerUi.serve);
   app.get('/api-docs', RouteHandler.getApiDocs);
+  app.get('/api-docs/download', RouteHandler.downloadApiDocs);
 };

@@ -60,13 +60,15 @@ exports.postApi = async function (zahtjev, odgovor) {
         }
       } catch (error) {
         const responseCode = error.code == 'ENOTFOUND' || error.code == 'ECONNREFUSED' ? 404 : 500;
+        console.log(error);
         odgovor.redirect(`/errorPage?error=${responseCode}`);
         return;
       }
 }
 
 exports.getApiDocs = async function (zahtjev, odgovor) {
-    var header = ds.readFileSync(path.join(putanja, 'html/partials/header.html'));
+    var header = ds.readFileSync(path.join(putanja, 'html/partials/header.html')) + "<div class='container'>";
+    var downloadButton = "</div>" + ds.readFileSync(path.join(putanja, 'html/components/download-button.html'));
     var footer = ds.readFileSync(path.join(putanja, 'html/partials/footer.html'));
 
     try {
@@ -79,10 +81,19 @@ exports.getApiDocs = async function (zahtjev, odgovor) {
         }
         const swaggerUiHtml = swaggerUi.generateHTML(swaggerDocument, options);
         
-        odgovor.send(header + swaggerUiHtml + footer);
+        odgovor.send(header + swaggerUiHtml + downloadButton + footer);
 
       } catch (error) {
         console.error('Greška prilikom generiranja Swagger dokumentacije:', error);
         odgovor.redirect(`/errorPage?error=500`);
       }
+}
+
+exports.downloadApiDocs = async function (zahtjev, odgovor) {
+  const openApiSpec = ds.readFileSync(filePath, 'utf8');
+
+  odgovor.setHeader('Content-disposition', 'attachment; filename=api-info.json');
+  odgovor.setHeader('Content-type', 'application/json');
+
+  odgovor.send(openApiSpec);
 }

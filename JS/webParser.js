@@ -26,6 +26,10 @@ class WebParser {
 
         return doc.body.textContent;
     }
+
+    async returnResponseCode(response){
+        return response.status;
+    }
   
     parseHTML(htmlString) {
         const dom = new JSDOM(htmlString);
