@@ -3,9 +3,7 @@ const { JSDOM } = require('jsdom');
 
 class WebParser {
     async fetchText(response) {
-        if(response.status == 200)
-            return await response.data;
-        return null
+        return await this.checkIfResponseIsOk(response) ? response.data : null;
     }
 
     async fetchResponse(file){
@@ -13,15 +11,18 @@ class WebParser {
     }
 
     async checkIfResponseIsOk(response){
-        return response.status == 200;
+        return await this.returnResponseCode(response) == 200;
     }
     
-    async getText(response) {
-        let y = await this.fetchText(response);
-        const doc = this.parseHTML(y);
+    async parseText(response) {
+        let rawData = await this.fetchText(response);
+        const doc = this.parseHTML(rawData);
 
-        const elementsToDelete = ["script", "nav", "sidenav", "topnav", "pagetop", "style", "header", "changelog", "navigation", "sidebar", "footer", "toolbar", "aside", "banner", "donations"];
-        // kasnije dodano: aside, banner, donations
+        const elementsToDelete = [
+            "script", "nav", "sidenav", "topnav", "pagetop", "style", 
+            "header", "changelog", "navigation", "sidebar", "footer", "toolbar", 
+            "aside", "banner", "donations"
+        ];
         this.deleteElementsByPartialName(doc, elementsToDelete);
 
         return doc.body.textContent;

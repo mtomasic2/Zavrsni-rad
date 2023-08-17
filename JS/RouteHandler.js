@@ -44,14 +44,10 @@ exports.postApi = async function (zahtjev, odgovor) {
         const webLink = zahtjev.body.webLink;
         const response = await webparser.fetchResponse(webLink);
         const responseCode = await webparser.returnResponseCode(response);
-        const parsedText = responseCode == 200 ? await webparser.getText(response) : '';
+        const parsedText = await webparser.checkIfResponseIsOk(response) ? await webparser.parseText(response) : '';
 
         if(parsedText.length > 30 && webparser.checkIfResponseIsOk(response)){
-          console.log("----------------------------------------------------------------------------");
-          console.log(await webparser.returnResponseCode(response));
           const cleanedText = normalizeSpace(parsedText);
-          console.log("----------------------------------------------------------------------------");
-          console.log(cleanedText + '\n----------------------------------------------------------------------------');
           const chatPrompt = 'Napisi mi OpenAPI specifikaciju u JSON obliku (bez komentara) sa putanja koje se navode u sljedecem opisu: \n' + cleanedText;
           const isFileWritten = await handler.writeApiInfoToFile(chatPrompt, filePath);
           odgovor.redirect(isFileWritten ? "/api-docs" : `/errorPage?error=${responseCode}`);
@@ -60,7 +56,6 @@ exports.postApi = async function (zahtjev, odgovor) {
         }
       } catch (error) {
         const responseCode = error.code == 'ENOTFOUND' || error.code == 'ECONNREFUSED' ? 404 : 500;
-        console.log(error);
         odgovor.redirect(`/errorPage?error=${responseCode}`);
         return;
       }
